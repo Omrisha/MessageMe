@@ -32,7 +32,7 @@ namespace MessageMe
         {
             var context = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
 
-            context.Clients.All.addMessage("The time now is: " + DateTime.Now);
+            context.Clients.All.addBroadcastMessage("The time now is: " + DateTime.Now);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MessageMe.Models;
 using Microsoft.AspNet.SignalR;
 
 namespace MessageMe.Hubs
@@ -13,13 +12,15 @@ namespace MessageMe.Hubs
         {
             int mult = int.Parse(number1) * int.Parse(number2);
             // Call the addNewMessageToPage method to update clients.
-            Clients.All.addNewMessageToPage(name, mult.ToString());
+            string msg = string.Format("The multiplication of {0}*{1} is {2}", number1, number2, mult);
+
+            Clients.All.addNewMessageToPage(name, msg);
         }
 
-        public void SendMessage(string message)
+        public void SendBroadcastMessage(string message)
         {
             // Call the addMessage methods on all clients
-            Clients.All.addMessage(message);
+            Clients.All.addBroadcastMessage(message);
         }
     }
 }
